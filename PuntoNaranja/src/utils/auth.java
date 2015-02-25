@@ -13,12 +13,14 @@ import java.util.Calendar;
 import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA.Environment;
 
 /**
  *
  * @author Marlon
  */
 public class auth {
+    
     public String leerArchivo(String ruta) {
       File archivo = null;
       FileReader fr = null;
@@ -28,8 +30,8 @@ public class auth {
          // Apertura del fichero y creacion de BufferedReader para poder
          // hacer una lectura comoda (disponer del metodo readLine()).
         if(Static.isWindows()){            
-         archivo = new File ("\\C:\\Puntos Naranja\\Files\\"+ruta);
-        }else archivo = new File ("/Applications/Puntos Naranja/Files/"+ruta);
+         archivo = new File (System.getProperty("user.home")+"\\Puntos Naranja\\Files\\"+ruta);
+        }else archivo = new File (System.getProperty("user.home")+"/Puntos Naranja/Files/"+ruta);
          fr = new FileReader (archivo);
          br = new BufferedReader(fr);
  
@@ -59,8 +61,8 @@ public void escribeFichero(String linea,String nombre) throws IOException
     {
         verificaCarpetas();
         
-        String ruta = "/Applications/Puntos Naranja/Files/"+nombre;
-        if(Static.isWindows())ruta = "/C:/Puntos Naranja/Files/"+nombre;
+        String ruta = System.getProperty("user.home")+"/Puntos Naranja/Files/"+nombre;
+        if(Static.isWindows())ruta = System.getProperty("user.home")+"/Puntos Naranja/Files/"+nombre;
         File archivo = new File(ruta);
         BufferedWriter bw;
         if(verificaFichero(archivo)) {
@@ -110,16 +112,16 @@ public void escribeFichero(String linea,String nombre) throws IOException
 public String[] bitacora(){
     File Bitacora;
         if(Static.isWindows()){
-            Bitacora = new File("\\C:\\Puntos Naranja\\Files\\Bitacora");
-        }else Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
+            Bitacora = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora");
+        }else Bitacora = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora");
     return Bitacora.list();
 }    
 public String returnRow(String fileName){
         String reporte="";
         BufferedReader br;
         try {
-            if(Static.isWindows())br = new BufferedReader(new FileReader("\\C:\\Puntos Naranja\\Files\\Bitacora\\"+fileName));
-            else br = new BufferedReader(new FileReader("/Applications/Puntos Naranja/Files/Bitacora/"+fileName));
+            if(Static.isWindows())br = new BufferedReader(new FileReader(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora\\"+fileName));
+            else br = new BufferedReader(new FileReader(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora/"+fileName));
         String line;
         int cuenta=0;
         try {
@@ -143,11 +145,11 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
         File Bitacora;
         if(Static.isWindows()){
             fecha= leerArchivo("Bitacora\\archivoFecha.txt"); 
-            Bitacora = new File("\\C:\\Puntos Naranja\\Files\\Bitacora");
+            Bitacora = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora");
         }  
         else {
             fecha= leerArchivo("Bitacora/archivoFecha.txt");
-            Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
+            Bitacora = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora");
         } 
         if(!fecha.equals(getMes())){
             String[] listArchivos=Bitacora.list();
@@ -156,11 +158,11 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
                 while(!listArchivos[total].split("-")[1].equals(get2MesAntes())&&!fecha.equals(getMes())&&Bitacora.list().length>11){
                     File removed;
                     if(Static.isWindows()){
-                        Bitacora = new File("\\C:\\Puntos Naranja\\Files\\Bitacora");                    
-                        removed = new File("\\C:\\Puntos Naranja\\Files\\Bitacora\\"+listArchivos[total]);
+                        Bitacora = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora");                    
+                        removed = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora\\"+listArchivos[total]);
                     }else{
-                        Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");                    
-                        removed = new File("/Applications/Puntos Naranja/Files/Bitacora/"+listArchivos[total]);
+                        Bitacora = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora");                    
+                        removed = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora/"+listArchivos[total]);
                     }
                     
                     removed.delete();
@@ -170,7 +172,7 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
            /* if(total>11){
                 for(int i=0;i<total-11;i++){  
                     int j=i+1;
-                    File removed = new File("\\C:\\Puntos Naranja\\Files\\Bitacora\\"+listArchivos[i]);
+                    File removed = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora\\"+listArchivos[i]);
                     removed.delete();
                 }
             }*/
@@ -184,7 +186,7 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
             int cuantas=Integer.parseInt(trans)+1;
             escribeFichero(addCero(cuantas+"",2)+"", "Bitacora/archivoTransacciones.txt");
             
-        File fout = new File("/Applications/Puntos Naranja/Files/Bitacora/"+getYear()+"-"+getMes()+"-"+getDia()+"-"+addCero(cuantas+"",2)+".txt");
+        File fout = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora/"+getYear()+"-"+getMes()+"-"+getDia()+"-"+addCero(cuantas+"",2)+".txt");
       
 	FileOutputStream fos = new FileOutputStream(fout);
  
@@ -208,20 +210,20 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
 	osw.close();
     }
 
-public Boolean firstLogin()
+ public Boolean firstLogin()
     {
         File Sesion;
             File Bitacora;
         if(Static.isWindows()){
-            Sesion = new File("\\C:\\Puntos Naranja\\Files\\Sesion");
-            Bitacora = new File("\\C:\\Puntos Naranja\\Files\\Bitacora");
+            Sesion = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Sesion");
+            Bitacora = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora");
         }else{
-            Sesion = new File("/Applications/Puntos Naranja/Files/Sesion");
-            Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
+            Sesion = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Sesion");
+            Bitacora = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora");
         }
-        //File folderSesion = new File("\\C:\\Puntos Naranja\\Files\\Sesion");
-        String ruta = "/Applications/Puntos Naranja/Files/Sesion/archivoPassword.txt";
-         if(Static.isWindows())ruta = "/C:/Puntos Naranja/Files/Sesion/archivoPassword.txt";
+        //File folderSesion = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Sesion");
+        String ruta = System.getProperty("user.home")+"/Puntos Naranja/Files/Sesion/archivoPassword.txt";
+         if(Static.isWindows())ruta = System.getProperty("user.home")+"/Puntos Naranja/Files/Sesion/archivoPassword.txt";
         File archivo = new File(ruta);
         if (!archivo.exists()) {
             Sesion.mkdirs();
@@ -241,11 +243,11 @@ public void verificaCarpetas(){
             File Sesion;
             File Bitacora;
         if(Static.isWindows()){
-            Sesion = new File("\\C:\\Puntos Naranja\\Files\\Sesion");
-            Bitacora = new File("\\C:\\Puntos Naranja\\Files\\Bitacora");
+            Sesion = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Sesion");
+            Bitacora = new File(System.getProperty("user.home")+"\\Puntos Naranja\\Files\\Bitacora");
         }else{
-            Sesion = new File("/Applications/Puntos Naranja/Files/Sesion");
-            Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
+            Sesion = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Sesion");
+            Bitacora = new File(System.getProperty("user.home")+"/Puntos Naranja/Files/Bitacora");
         }
         
         if (!Sesion.exists()) {
