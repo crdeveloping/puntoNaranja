@@ -333,6 +333,7 @@ public class ConfirmaRecarga extends javax.swing.JFrame {
                     this.setVisible(false);
                     new ventanaReporte().setVisible(true);
                 }else {
+                    this.setVisible(false);
                     JOptionPane.showMessageDialog(null, resp+", se ha cancelado la transaccion");
                 }
             }else{

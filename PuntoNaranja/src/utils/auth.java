@@ -221,6 +221,7 @@ public Boolean firstLogin()
         }
         //File folderSesion = new File("\\C:\\Puntos Naranja\\Files\\Sesion");
         String ruta = "/Applications/Puntos Naranja/Files/Sesion/archivoPassword.txt";
+         if(Static.isWindows())ruta = "/C:/Puntos Naranja/Files/Sesion/archivoPassword.txt";
         File archivo = new File(ruta);
         if (!archivo.exists()) {
             Sesion.mkdirs();
