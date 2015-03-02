@@ -61,7 +61,7 @@ public class TextPrinter implements Printable {
         BufferedReader br;
         File Bitacora;
        if(Static.isWindows()) Bitacora = new File(System.getProperty("user.home")+"\\Documents\\Puntos Naranja\\Files\\Bitacora");
-       else Bitacora = new File(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora");
+       else Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
         String[] lista=Bitacora.list();
         try {
             if(Static.isWindows()){
@@ -72,9 +72,9 @@ public class TextPrinter implements Printable {
                 }
             }else{
                 if(selected){
-                    br = new BufferedReader(new FileReader(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora/"+lista[cual]));
+                    br = new BufferedReader(new FileReader("/Applications/Puntos Naranja/Files/Bitacora/"+lista[cual]));
                 }else{
-                    br = new BufferedReader(new FileReader(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora/"+lista[Bitacora.list().length-3]));
+                    br = new BufferedReader(new FileReader("/Applications/Puntos Naranja/Files/Bitacora/"+lista[Bitacora.list().length-3]));
                 }
             }
             String line;
@@ -154,7 +154,7 @@ public class TextPrinter implements Printable {
         BufferedReader br;
          File Bitacora;
        if(Static.isWindows()) Bitacora = new File(System.getProperty("user.home")+"\\Documents\\Puntos Naranja\\Files\\Bitacora");
-       else Bitacora = new File(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora");
+       else Bitacora = new File("/Applications/Puntos Naranja/Files/Bitacora");
         String[] lista=Bitacora.list();
         try {
             if(Static.isWindows()){
@@ -165,9 +165,9 @@ public class TextPrinter implements Printable {
                 }
             }else{
                 if(selected){
-                    br = new BufferedReader(new FileReader(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora/"+lista[cual]));
+                    br = new BufferedReader(new FileReader("/Applications/Puntos Naranja/Files/Bitacora/"+lista[cual]));
                 }else{
-                    br = new BufferedReader(new FileReader(System.getProperty("user.home")+"/.Puntos Naranja/Files/Bitacora/"+lista[Bitacora.list().length-3]));
+                    br = new BufferedReader(new FileReader("/Applications/Puntos Naranja/Files/Bitacora/"+lista[Bitacora.list().length-3]));
                 }
             }
             String line;
