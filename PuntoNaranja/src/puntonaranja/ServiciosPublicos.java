@@ -294,7 +294,8 @@ public class ServiciosPublicos extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbOperadoraItemStateChanged
     
  void cambioOperadora(String operadora){
-            cmbOperadora.setSelectedIndex(0);       
+            cmbOperadora.setSelectedIndex(0); 
+            
      for(int i=0;i<cmbOperadora.getItemCount()-1;i++){
          if(!cmbOperadora.getSelectedItem().toString().equals(operadora)){
             cmbOperadora.setSelectedIndex(i+1);              
@@ -325,22 +326,27 @@ public class ServiciosPublicos extends javax.swing.JFrame {
             String resp = msg.getMsgResponse();
              if(resp != null){
                 if(resp.equals("Transacción aprobada en forma exitosa")){
-                    new ConfirmaRecarga(response.get("4") ,identificador,selected.getLabel(),"Servicios",response.get("62"),"",response.get("63")).setVisible(true);
-                }else {
-                                    JOptionPane.showMessageDialog(null, resp+", intente de nuevo");
-                                    txtNumero.setText("");
-                                    opened=false;
-                                }
-            }else{
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Codigo de respuesta erronea: "+response.get("39")+", consulte con su proveedor");
-                                    opened=false;
-            }
-           // new ConfirmaRecarga("2000" ,"10201","ICE","Servicios","1111","","Numero recibo : 034411410126032034 |Vencimiento : 09/04/2014|Moneda : COL|Monto : 6,330.00;").setVisible(true);
-            txtNumero.setText("");
-            }else{
+                        txtNumero.requestFocusInWindow();
+                        new ConfirmaRecarga(response.get("4"), identificador, selected.getLabel(), "Servicios", response.get("62"), "", response.get("63")).setVisible(true);
+                        opened = false;
+                    } else {
+                        JOptionPane.showMessageDialog(null, resp + ", intente de nuevo");
+                        txtNumero.setText("");
+                        txtNumero.requestFocusInWindow();
+                        opened = false;
+                    }
+                } else {
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Codigo de respuesta erronea: " + response.get("39") + ", consulte con su proveedor");
+                    opened = false;
+                    txtNumero.requestFocusInWindow();
+                }
+                // new ConfirmaRecarga("2000" ,"10201","ICE","Servicios","1111","","Numero recibo : 034411410126032034 |Vencimiento : 09/04/2014|Moneda : COL|Monto : 6,330.00;").setVisible(true);
+                txtNumero.setText("");
+            } else {
                 JOptionPane.showMessageDialog(null, "Digite un valor para continuar");
-                                    opened=false;
+                opened = false;
+                txtNumero.requestFocusInWindow();
             }
 
             
@@ -355,10 +361,12 @@ public class ServiciosPublicos extends javax.swing.JFrame {
         // TODO add your handling code here:
         //txtMonto.setText("");
         txtNumero.setText("");
+     txtNumero.requestFocusInWindow();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
+     txtNumero.requestFocusInWindow();
         this.setVisible(false);
         //new home().setVisible(true);
     }//GEN-LAST:event_jButton4MouseClicked
@@ -370,6 +378,7 @@ public class ServiciosPublicos extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         this.setVisible(false);
+     txtNumero.requestFocusInWindow();
     }//GEN-LAST:event_formWindowClosing
 
     private void txtNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActionPerformed
@@ -423,6 +432,7 @@ public class ServiciosPublicos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No hay recibos para imprimir", "Atención!", JOptionPane.WARNING_MESSAGE );
         }
         }
+     txtNumero.requestFocusInWindow();
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
