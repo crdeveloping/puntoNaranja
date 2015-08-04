@@ -134,7 +134,7 @@ public String returnRow(String fileName){
         }
         return reporte;
     }
-public void escribeFicheroPrint(String monto,String num,String empresa,String nombre) throws IOException
+public void escribeFicheroPrint(String monto,String num,String empresa,String nombre, String info) throws IOException
     {
         verificaCarpetas();
         String fecha;
@@ -202,6 +202,8 @@ public void escribeFicheroPrint(String monto,String num,String empresa,String no
                     osw.write(empresa);
                     osw.write(System.lineSeparator());
                     osw.write(monto);
+                    osw.write(System.lineSeparator());
+                    osw.write(info);
  
 	osw.close();
     }
