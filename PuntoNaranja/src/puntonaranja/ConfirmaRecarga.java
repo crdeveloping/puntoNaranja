@@ -368,7 +368,7 @@ public class ConfirmaRecarga extends javax.swing.JFrame {
             String resp = msg.getMsgResponse();
             if(resp != null){
                 if(resp.equals("Transacción aprobada en forma exitosa")){
-                    new auth().escribeFicheroPrint(monto,celular,selected,tipo);
+                    new auth().escribeFicheroPrint(monto,celular,selected,tipo,"");
                     consultaSaldo();
                     this.setVisible(false);
                     new ventanaReporte().setVisible(true);
@@ -480,7 +480,7 @@ public class ConfirmaRecarga extends javax.swing.JFrame {
                             String resp = msg.getMsgResponse();
                             if(resp!=null){
                                 if(resp.equals("Transacción aprobada en forma exitosa")){
-                                    new auth().escribeFicheroPrint(selected2,msg.getMsgPin(),selected,"Pines");
+                                    new auth().escribeFicheroPrint(selected2,msg.getMsgPin(),selected,"Pines","");
                                     consultaSaldo();
                                     this.setVisible(false);
                                     new ventanaReporte().setVisible(true);
@@ -633,7 +633,7 @@ public class ConfirmaRecarga extends javax.swing.JFrame {
                 String resp = msg.getMsgResponse();
              if(resp!=null){   
                 if(resp.equals("Transacción aprobada en forma exitosa")){
-                    new auth().escribeFicheroPrint(mont,num,operador,"Servicios");
+                    new auth().escribeFicheroPrint(mont,num,operador,"Servicios",response.get("63"));
                     consultaSaldo();
                     this.setVisible(false);
                     new ventanaReporte().setVisible(true);

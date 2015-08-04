@@ -117,6 +117,7 @@ public class TextPrinter implements Printable {
                     if(cuenta==4)cadena += "Identificador: "+line + "\n";
                     if(cuenta==5)cadena += "Servicio: "+line + "\n";
                     if(cuenta==6)cadena += "Monto: "+line + "\n";
+                    if(cuenta==7)cadena += "Información adicional: "+line + "\n";
                 break;
             }              
            cuenta++;
@@ -231,6 +232,7 @@ public class TextPrinter implements Printable {
                     if(cuenta==4)reporte+="Servicios Públicos \n Identificador: "+line+"\n";
                     if(cuenta==5)reporte+="Servicio: "+line+"\n";
                     if(cuenta==6)reporte+="Monto: "+line+"\n";
+                    if(cuenta==7)reporte+= "Información adicional: "+line + "\n";
                 break;
             }
                     
